@@ -1,41 +1,33 @@
-# XAU/USD Trading Analytics Dashboard
+# MONMON100 Trading Analytics Dashboard
 
-Production-ready React + Vite dashboard for real-time XAU/USD trading performance monitoring.
+Simple one-file HTML dashboard for XAU/USD closed trade analytics.
 
-## API endpoints
-Configured in `src/config.js`:
-
-- `GET /webhook/trades`
-- `GET /webhook/ea-trades`
-- `GET /webhook/telegram-signals`
-- `GET /webhook/indicators`
-
-Default n8n server:
-
-```txt
-http://202.182.125.225:5678
-```
-
-## Run locally
-
-```bash
-npm install
-npm run dev
-```
-
-## Build
-
-```bash
-npm run build
-```
+## Files
+- `index.html` — dashboard only
+- `README.md` — instructions
 
 ## Deploy to Vercel
+1. Upload `index.html` and `README.md` to GitHub repository.
+2. Import the repository into Vercel.
+3. Framework preset: Other.
+4. Build command: leave empty.
+5. Output directory: leave empty or `.`.
+6. Deploy.
 
-```bash
-npm install -g vercel
-vercel login
-vercel deploy --prod
+## n8n endpoint
+Default endpoint inside `index.html`:
+
+```js
+API_URL: 'http://202.182.125.225:5678/webhook/trades'
 ```
 
-## Demo mode
-If the n8n endpoint is unavailable, the app automatically switches to demo data.
+Dashboard counts only closed trades:
+- WIN
+- TP1_HIT
+- TP_MID_HIT
+- LOSS
+
+Start date:
+```js
+START_DATE: '2026-06-16'
+```
