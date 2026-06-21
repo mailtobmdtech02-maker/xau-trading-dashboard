@@ -161,7 +161,7 @@ select.fsel:focus{outline:none;border-color:var(--gold)}
 </div>
 <footer class="site-footer"><span>MONMON100 &middot; Unified_Trades &middot; Single Source of Truth</span><span id="footerInfo">Phase 2 &middot; Initializing...</span></footer>
 <script>
-const CONFIG={API_URL:'http://202.182.125.225:5678/webhook/dashboard-data',REFRESH_MS:120000,PHASE:2};
+const CONFIG={API_URL:'/api/dashboard-data',REFRESH_MS:120000,PHASE:2};
 const SMC_SIGNALS=new Set(['BOS','BOS+OB','BOS+FVG+OB','FVG+MSS','BOS+FVG','OB']);
 const INDICATOR_SIGNALS=new Set(['RSI+MACD','MACD','RSI','RSI+BB','STOCH+RSI']);
 const LEGACY_DIR_SIGNALS=new Set(['BUY','SELL']);
