@@ -5,24 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>MONMON100 Trading Dashboard</title>
 <style>
-:root{
-  --bg:#0A0A0A;--card:#111111;--card2:#0D0D0D;--border:#D4AF37;--border2:#2A2A2A;
-  --gold:#D4AF37;--champ:#F5E6B3;--muted:#888888;--dim:#444444;
-  --green:#4CAF50;--red:#EF5350;--silver:#C0C0C0;--bronze:#CD7F32;
-  --win-bg:#1A3A1A;--loss-bg:#3A1A1A;--open-bg:#0D1A2E;
-  --hdr:#1A1A00;--shadow:0 4px 24px rgba(0,0,0,.6);
-}
+:root{--bg:#0A0A0A;--card:#111111;--card2:#0D0D0D;--border:#D4AF37;--border2:#2A2A2A;--gold:#D4AF37;--champ:#F5E6B3;--muted:#888888;--dim:#444444;--green:#4CAF50;--red:#EF5350;--silver:#C0C0C0;--bronze:#CD7F32;--win-bg:#1A3A1A;--loss-bg:#3A1A1A;--open-bg:#0D1A2E;--hdr:#1A1A00;--shadow:0 4px 24px rgba(0,0,0,.6);}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--champ);font-family:'Courier New',Courier,monospace;font-size:14px;min-height:100vh}
 a{color:var(--gold);text-decoration:none}
-/* HEADER */
 .site-header{background:#050505;border-bottom:1px solid var(--gold);padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
 .site-header h1{font-size:20px;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
 .site-header .sub{font-size:11px;color:var(--muted);letter-spacing:2px;margin-top:3px}
 .live-dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:6px;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .last-update{font-size:11px;color:var(--muted);text-align:right}
-/* FILTER BAR */
 .filter-bar{background:#111;border-bottom:1px solid #222;padding:10px 24px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;position:sticky;top:0;z-index:100}
 .filter-group{display:flex;gap:4px;align-items:center}
 .filter-label{font-size:11px;color:var(--muted);letter-spacing:1px;margin-right:4px;text-transform:uppercase}
@@ -31,953 +23,184 @@ a{color:var(--gold);text-decoration:none}
 .filter-sep{width:1px;height:20px;background:#333;margin:0 6px}
 select.fsel{background:#111;border:1px solid #333;color:var(--muted);padding:5px 10px;border-radius:3px;font-family:inherit;font-size:12px;cursor:pointer}
 select.fsel:focus{outline:none;border-color:var(--gold)}
-/* WRAP */
 .wrap{max-width:1400px;margin:0 auto;padding:20px 24px;display:flex;flex-direction:column;gap:20px}
-/* SECTION HEADER */
 .sec-hdr{background:var(--hdr);border-left:3px solid var(--gold);padding:8px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
 .sec-hdr h2{font-size:13px;letter-spacing:3px;color:var(--gold);text-transform:uppercase}
 .sec-hdr .sec-sub{font-size:11px;color:var(--muted)}
-/* CARD */
 .card{background:var(--card);border:1px solid #222;border-radius:4px;padding:18px;box-shadow:var(--shadow)}
-.card-gold{border-color:var(--gold)}
-/* KPI STRIP */
 .kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .kpi-card{background:var(--card);border:1px solid var(--gold);border-radius:4px;padding:16px 14px;text-align:center}
 .kpi-num{font-size:32px;font-weight:900;color:var(--gold);font-family:'Courier New',monospace;line-height:1.1}
 .kpi-lbl{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:5px}
 .kpi-sub{font-size:11px;color:var(--dim);margin-top:3px}
-/* WAR ROOM TABLE */
 .data-table{width:100%;border-collapse:collapse}
 .data-table th{background:#0A0A0A;color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:10px 14px;border-bottom:1px solid var(--gold);text-align:left}
 .data-table td{padding:10px 14px;border-bottom:1px solid #1A1A1A;color:var(--champ);font-size:13px}
 .data-table tr:hover td{background:#151515}
 .data-table .total-row td{border-top:1px solid var(--gold);color:var(--gold);font-weight:700}
-.gold-text{color:var(--gold)}
-.muted-text{color:var(--muted);font-style:italic}
-/* BATTLE CARDS */
+.gold-text{color:var(--gold)}.muted-text{color:var(--muted);font-style:italic}
 .battle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .battle-card{background:var(--card);border-radius:4px;padding:20px;text-align:center;position:relative}
-.battle-card.champion{border:2px solid var(--gold)}
-.battle-card.runner{border:2px solid var(--silver)}
-.battle-card.third{border:2px solid var(--bronze)}
-.battle-card.no-data{border:1px solid #333;opacity:.6}
-.medal{font-size:32px;margin-bottom:8px}
-.battle-name{font-size:18px;color:var(--gold);letter-spacing:2px;font-weight:700;margin-bottom:12px}
+.battle-card.champion{border:2px solid var(--gold)}.battle-card.runner{border:2px solid var(--silver)}.battle-card.third{border:2px solid var(--bronze)}.battle-card.no-data{border:1px solid #333;opacity:.6}
+.medal{font-size:32px;margin-bottom:8px}.battle-name{font-size:18px;color:var(--gold);letter-spacing:2px;font-weight:700;margin-bottom:12px}
 .battle-stat{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #1A1A1A;font-size:12px}
-.battle-stat .label{color:var(--muted)}
-.battle-stat .value{color:var(--champ);font-weight:700}
-.battle-bar{height:6px;background:#1A1A1A;border-radius:3px;margin-top:14px;overflow:hidden}
-.battle-bar-fill{height:100%;border-radius:3px;background:var(--gold)}
+.battle-stat .label{color:var(--muted)}.battle-stat .value{color:var(--champ);font-weight:700}
+.battle-bar{height:6px;background:#1A1A1A;border-radius:3px;margin-top:14px;overflow:hidden}.battle-bar-fill{height:100%;border-radius:3px;background:var(--gold)}
 .not-enough{font-size:12px;color:var(--muted);font-style:italic;margin-top:10px}
-/* 2-COL */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-/* SIGNAL/SESSION TABLE */
 .analysis-table{width:100%;border-collapse:collapse}
 .analysis-table th{color:var(--gold);font-size:11px;letter-spacing:2px;padding:8px 10px;border-bottom:1px solid var(--gold);text-align:left;text-transform:uppercase}
 .analysis-table td{padding:8px 10px;border-bottom:1px solid #1A1A1A;color:var(--champ);font-size:13px}
 .analysis-table tr:hover td{background:#151515}
-/* HEATMAP */
 .heatmap-rows{display:flex;flex-direction:column;gap:8px;margin-top:8px}
 .heatmap-row{display:grid;grid-template-columns:100px 1fr 50px;gap:10px;align-items:center}
-.heatmap-lbl{font-size:12px;color:var(--champ)}
-.heatmap-bar-bg{height:16px;background:#1A1A1A;border-radius:2px;overflow:hidden}
-.heatmap-bar-fill{height:100%;border-radius:2px;transition:width .4s}
-.heatmap-pct{font-size:12px;color:var(--gold);text-align:right;font-weight:700}
-/* GRADE ANALYSIS */
+.heatmap-lbl{font-size:12px;color:var(--champ)}.heatmap-bar-bg{height:16px;background:#1A1A1A;border-radius:2px;overflow:hidden}
+.heatmap-bar-fill{height:100%;border-radius:2px;transition:width .4s}.heatmap-pct{font-size:12px;color:var(--gold);text-align:right;font-weight:700}
 .grade-summary{width:100%;border-collapse:collapse}
 .grade-summary th{color:var(--gold);font-size:11px;letter-spacing:2px;padding:8px 10px;border-bottom:1px solid var(--gold);text-align:left;text-transform:uppercase}
 .grade-summary td{padding:8px 10px;border-bottom:1px solid #1A1A1A;color:var(--champ);font-size:13px}
-.grade-summary .drill-row td{background:#0D0D0D;padding:6px 10px 6px 30px;font-size:12px;color:var(--muted)}
-.grade-summary .drill-row.hidden{display:none}
-.grade-lbl-a{color:var(--gold);font-weight:700}
-.grade-lbl-b{color:var(--champ)}
-.grade-lbl-c{color:var(--muted)}
-.grade-lbl-na{color:var(--dim);font-style:italic}
+.grade-summary .drill-row td{background:#0D0D0D;padding:6px 10px 6px 30px;font-size:12px;color:var(--muted)}.grade-summary .drill-row.hidden{display:none}
+.grade-lbl-a{color:var(--gold);font-weight:700}.grade-lbl-b{color:var(--champ)}.grade-lbl-c{color:var(--muted)}.grade-lbl-na{color:var(--dim);font-style:italic}
 .drill-toggle{background:none;border:none;color:var(--gold);cursor:pointer;font-size:11px;padding:0 6px;font-family:inherit}
-/* EQUITY CURVE */
 .equity-wrap{position:relative;width:100%;height:260px;background:#0A0A0A;border:1px solid #1A1A1A;border-radius:4px;overflow:hidden}
 .equity-canvas{width:100%;height:100%}
 .equity-stats{display:flex;gap:20px;margin-top:10px;flex-wrap:wrap}
-.equity-stat{font-size:12px}
-.equity-stat .eq-lbl{color:var(--muted)}
-.equity-stat .eq-val{color:var(--gold);font-weight:700;margin-left:6px}
-.eq-drawdown{color:var(--red) !important}
-/* STREAK */
+.equity-stat{font-size:12px}.equity-stat .eq-lbl{color:var(--muted)}.equity-stat .eq-val{color:var(--gold);font-weight:700;margin-left:6px}.eq-drawdown{color:var(--red) !important}
 .streak-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .streak-card{background:var(--card);border-radius:4px;padding:20px;text-align:center;border:1px solid #222}
 .streak-num{font-size:48px;font-weight:900;line-height:1;margin:8px 0}
-.streak-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px}
-.streak-sub{font-size:11px;color:var(--dim);margin-top:6px}
-.streak-win{color:var(--green)}
-.streak-loss{color:var(--red)}
-.streak-current-win{border-color:var(--green)}
-.streak-current-loss{border-color:var(--red)}
-/* OPEN WIDGET */
+.streak-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px}.streak-sub{font-size:11px;color:var(--dim);margin-top:6px}
+.streak-win{color:var(--green)}.streak-loss{color:var(--red)}.streak-current-win{border-color:var(--green)}.streak-current-loss{border-color:var(--red)}
 .open-widget{background:var(--card2);border:1px dashed var(--gold);border-radius:4px;padding:30px;text-align:center}
 .open-count{font-size:72px;font-weight:900;color:var(--gold);font-family:'Courier New',monospace;line-height:1}
 .open-lbl{font-size:12px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-top:6px}
 .open-disclaimer{font-size:11px;color:var(--dim);font-style:italic;margin-top:10px}
-/* TRADE LOG */
 .trade-table{width:100%;border-collapse:collapse;font-size:12px}
 .trade-table th{color:var(--gold);font-size:10px;letter-spacing:2px;padding:8px 10px;border-bottom:1px solid var(--gold);text-align:left;text-transform:uppercase;cursor:pointer}
-.trade-table th:hover{color:var(--champ)}
-.trade-table td{padding:8px 10px;border-bottom:1px solid #151515;color:var(--champ)}
-.trade-table .win-row td:first-child{border-left:2px solid var(--green)}
-.trade-table .loss-row td:first-child{border-left:2px solid var(--red)}
-.pill{padding:2px 8px;border-radius:2px;font-size:11px;font-weight:700;font-family:inherit}
-.pill-win{background:rgba(76,175,80,.15);color:var(--green)}
-.pill-loss{background:rgba(239,83,80,.15);color:var(--red)}
-.pill-open{background:rgba(85,153,221,.15);color:#5599DD}
-.dir-buy{color:var(--green)}
-.dir-sell{color:var(--red)}
+.trade-table th:hover{color:var(--champ)}.trade-table td{padding:8px 10px;border-bottom:1px solid #151515;color:var(--champ)}
+.trade-table .win-row td:first-child{border-left:2px solid var(--green)}.trade-table .loss-row td:first-child{border-left:2px solid var(--red)}
+.pill{padding:2px 8px;border-radius:2px;font-size:11px;font-weight:700;font-family:inherit}.pill-win{background:rgba(76,175,80,.15);color:var(--green)}.pill-loss{background:rgba(239,83,80,.15);color:var(--red)}
+.dir-buy{color:var(--green)}.dir-sell{color:var(--red)}
 .load-more{display:block;width:100%;padding:10px;background:transparent;border:1px solid #333;color:var(--muted);cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-top:10px;border-radius:3px;transition:all .15s}
 .load-more:hover{border-color:var(--gold);color:var(--gold)}
-/* FOOTER */
 .site-footer{background:#050505;border-top:1px solid #1A1A1A;padding:12px 24px;display:flex;justify-content:space-between;font-size:11px;color:var(--dim)}
-/* RESPONSIVE */
-@media(max-width:900px){
-  .kpi-strip{grid-template-columns:repeat(2,1fr)}
-  .battle-grid,.two-col,.streak-grid{grid-template-columns:1fr}
-}
+@media(max-width:900px){.kpi-strip{grid-template-columns:repeat(2,1fr)}.battle-grid,.two-col,.streak-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<!-- SITE HEADER -->
 <header class="site-header">
-  <div>
-    <h1>MONMON100 Trading Dashboard</h1>
-    <div class="sub">Unified_Trades &middot; Single Source of Truth &middot; Bloomberg Terminal</div>
-  </div>
-  <div class="last-update">
-    <div><span class="live-dot"></span>LIVE</div>
-    <div id="lastUpdated" style="margin-top:4px">Initializing...</div>
-  </div>
+<div><h1>MONMON100 Trading Dashboard</h1><div class="sub">Unified_Trades &middot; Single Source of Truth &middot; Bloomberg Terminal</div></div>
+<div class="last-update"><div><span class="live-dot"></span>LIVE</div><div id="lastUpdated" style="margin-top:4px">Initializing...</div></div>
 </header>
-
-<!-- FILTER BAR -->
 <div class="filter-bar">
-  <div class="filter-group">
-    <span class="filter-label">Period</span>
-    <button class="fbtn" data-period="week">WEEK</button>
-    <button class="fbtn" data-period="month">MONTH</button>
-    <button class="fbtn" data-period="year">YEAR</button>
-    <button class="fbtn active" data-period="all">ALL TIME</button>
-  </div>
-  <div class="filter-sep"></div>
-  <div class="filter-group">
-    <span class="filter-label">Source</span>
-    <select class="fsel" id="srcFilter">
-      <option value="All">All Sources</option>
-      <option value="Telegram">Telegram</option>
-      <option value="EA">EA</option>
-      <option value="Indicator">Indicator</option>
-    </select>
-  </div>
-  <div class="filter-sep"></div>
-  <div class="filter-group">
-    <span class="filter-label">Grade</span>
-    <select class="fsel" id="gradeFilter">
-      <option value="All">All Grades</option>
-      <option value="A">A</option>
-      <option value="B">B</option>
-      <option value="C">C</option>
-      <option value="NA">N/A</option>
-    </select>
-  </div>
-  <div class="filter-sep"></div>
-  <div class="filter-group">
-    <span class="filter-label">Result</span>
-    <select class="fsel" id="resultFilter">
-      <option value="All">WIN + LOSS</option>
-      <option value="WIN">WIN only</option>
-      <option value="LOSS">LOSS only</option>
-    </select>
-  </div>
+<div class="filter-group"><span class="filter-label">Period</span><button class="fbtn" data-period="week">WEEK</button><button class="fbtn" data-period="month">MONTH</button><button class="fbtn" data-period="year">YEAR</button><button class="fbtn active" data-period="all">ALL TIME</button></div>
+<div class="filter-sep"></div>
+<div class="filter-group"><span class="filter-label">Source</span><select class="fsel" id="srcFilter"><option value="All">All Sources</option><option value="Telegram">Telegram</option><option value="EA">EA</option><option value="Indicator">Indicator</option></select></div>
+<div class="filter-sep"></div>
+<div class="filter-group"><span class="filter-label">Grade</span><select class="fsel" id="gradeFilter"><option value="All">All Grades</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="NA">N/A</option></select></div>
+<div class="filter-sep"></div>
+<div class="filter-group"><span class="filter-label">Result</span><select class="fsel" id="resultFilter"><option value="All">WIN + LOSS</option><option value="WIN">WIN only</option><option value="LOSS">LOSS only</option></select></div>
 </div>
-
-<!-- MAIN WRAP -->
 <div class="wrap">
-
-<!-- S0: EXECUTIVE SUMMARY -->
 <div>
-  <div class="sec-hdr">
-    <h2>&#9670; Executive Summary</h2>
-    <span class="sec-sub">Closed Trades Only &middot; WIN + LOSS &middot; OPEN and REMOVED excluded</span>
-  </div>
-  <div class="kpi-strip">
-    <div class="kpi-card">
-      <div class="kpi-num" id="kpiTotal">—</div>
-      <div class="kpi-lbl">Total Trades</div>
-      <div class="kpi-sub" id="kpiTotalSub">closed</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-num" id="kpiWR">—</div>
-      <div class="kpi-lbl">Win Rate</div>
-      <div class="kpi-sub" id="kpiWRSub">—W &middot; —L</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-num" id="kpiExp">—</div>
-      <div class="kpi-lbl">Expectancy</div>
-      <div class="kpi-sub">per R risked</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-num" id="kpiAvgRR">—</div>
-      <div class="kpi-lbl">Avg RR</div>
-      <div class="kpi-sub">wins only</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-num" id="kpiPF">—</div>
-      <div class="kpi-lbl">Profit Factor</div>
-      <div class="kpi-sub">gross W / gross L</div>
-    </div>
-  </div>
+<div class="sec-hdr"><h2>&#9670; Executive Summary</h2><span class="sec-sub">Closed Trades Only &middot; WIN + LOSS &middot; OPEN and REMOVED excluded</span></div>
+<div class="kpi-strip">
+<div class="kpi-card"><div class="kpi-num" id="kpiTotal">&#8212;</div><div class="kpi-lbl">Total Trades</div><div class="kpi-sub" id="kpiTotalSub">closed</div></div>
+<div class="kpi-card"><div class="kpi-num" id="kpiWR">&#8212;</div><div class="kpi-lbl">Win Rate</div><div class="kpi-sub" id="kpiWRSub">&#8212;W &middot; &#8212;L</div></div>
+<div class="kpi-card"><div class="kpi-num" id="kpiExp">&#8212;</div><div class="kpi-lbl">Expectancy</div><div class="kpi-sub">per R risked</div></div>
+<div class="kpi-card"><div class="kpi-num" id="kpiAvgRR">&#8212;</div><div class="kpi-lbl">Avg RR</div><div class="kpi-sub">wins only</div></div>
+<div class="kpi-card"><div class="kpi-num" id="kpiPF">&#8212;</div><div class="kpi-lbl">Profit Factor</div><div class="kpi-sub">gross W / gross L</div></div>
 </div>
-
-<!-- S1: WAR ROOM -->
+</div>
 <div>
-  <div class="sec-hdr">
-    <h2>&#9876; War Room &mdash; System Performance</h2>
-    <span class="sec-sub">Source of Truth: Unified_Trades &middot; Closed Trades Only</span>
-  </div>
-  <div class="card">
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Source</th><th>Trades</th><th>Win Rate</th><th>Expectancy</th><th>Avg RR</th>
-        </tr>
-      </thead>
-      <tbody id="warRoomBody"></tbody>
-    </table>
-  </div>
+<div class="sec-hdr"><h2>&#9876; War Room &#8212; System Performance</h2><span class="sec-sub">Source of Truth: Unified_Trades &middot; Closed Trades Only</span></div>
+<div class="card"><table class="data-table"><thead><tr><th>Source</th><th>Trades</th><th>Win Rate</th><th>Expectancy</th><th>Avg RR</th></tr></thead><tbody id="warRoomBody"></tbody></table></div>
 </div>
-
-<!-- S2: PERFORMANCE BATTLE -->
 <div>
-  <div class="sec-hdr">
-    <h2>&#127942; Performance Battle &mdash; Ranked by Expectancy</h2>
-    <span class="sec-sub">Minimum 5 closed trades required for ranking</span>
-  </div>
-  <div class="battle-grid" id="battleGrid"></div>
+<div class="sec-hdr"><h2>&#127942; Performance Battle &#8212; Ranked by Expectancy</h2><span class="sec-sub">Minimum 5 closed trades required for ranking</span></div>
+<div class="battle-grid" id="battleGrid"></div>
 </div>
-
-<!-- S3+S4: SIGNAL + SESSION -->
 <div class="two-col">
-  <div>
-    <div class="sec-hdr">
-      <h2>&#128225; Signal Analysis</h2>
-      <span class="sec-sub">Actual Unified_Trades Signal values</span>
-    </div>
-    <div class="card">
-      <table class="analysis-table">
-        <thead><tr><th>Signal</th><th>Trades</th><th>Win Rate</th><th>Avg RR</th></tr></thead>
-        <tbody id="signalBody"></tbody>
-      </table>
-    </div>
-  </div>
-  <div>
-    <div class="sec-hdr">
-      <h2>&#128336; Session Analysis</h2>
-      <span class="sec-sub">Table + Heatmap</span>
-    </div>
-    <div class="card">
-      <table class="analysis-table">
-        <thead><tr><th>Session</th><th>Trades</th><th>Win Rate</th><th>Avg RR</th></tr></thead>
-        <tbody id="sessionBody"></tbody>
-      </table>
-      <div style="margin-top:16px;border-top:1px solid #1A1A1A;padding-top:12px">
-        <div style="font-size:10px;color:var(--muted);letter-spacing:2px;margin-bottom:8px">WIN RATE HEATMAP</div>
-        <div class="heatmap-rows" id="sessionHeatmap"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- S5: GRADE ANALYSIS -->
 <div>
-  <div class="sec-hdr">
-    <h2>&#127894; Grade Analysis</h2>
-    <span class="sec-sub">GradeLabel Display &middot; Click to drill down by numeric Grade</span>
-  </div>
-  <div class="card">
-    <table class="grade-summary">
-      <thead><tr><th></th><th>Grade</th><th>Trades</th><th>Win Rate</th><th>Avg RR</th></tr></thead>
-      <tbody id="gradeBody"></tbody>
-    </table>
-  </div>
+<div class="sec-hdr"><h2>&#128225; Signal Analysis</h2><span class="sec-sub">SMC=Gold &middot; Indicator=Champagne &middot; Legacy=Dim</span></div>
+<div class="card"><table class="analysis-table"><thead><tr><th>Signal</th><th>Trades</th><th>Win Rate</th><th>Avg RR</th></tr></thead><tbody id="signalBody"></tbody></table></div>
 </div>
-
-<!-- S6: EQUITY CURVE -->
 <div>
-  <div class="sec-hdr">
-    <h2>&#128200; Equity Curve &mdash; Cumulative R</h2>
-    <span class="sec-sub">WIN = +RR &middot; LOSS = -1R &middot; Closed trades only &middot; Time-filter aware</span>
-  </div>
-  <div class="card">
-    <div class="equity-wrap">
-      <canvas class="equity-canvas" id="equityCanvas"></canvas>
-    </div>
-    <div class="equity-stats" id="equityStats"></div>
-  </div>
+<div class="sec-hdr"><h2>&#128336; Session Analysis</h2><span class="sec-sub">Table + Heatmap</span></div>
+<div class="card">
+<table class="analysis-table"><thead><tr><th>Session</th><th>Trades</th><th>Win Rate</th><th>Avg RR</th></tr></thead><tbody id="sessionBody"></tbody></table>
+<div style="margin-top:16px;border-top:1px solid #1A1A1A;padding-top:12px"><div style="font-size:10px;color:var(--muted);letter-spacing:2px;margin-bottom:8px">WIN RATE HEATMAP</div><div class="heatmap-rows" id="sessionHeatmap"></div></div>
 </div>
-
-<!-- S7: STREAK -->
+</div>
+</div>
 <div>
-  <div class="sec-hdr">
-    <h2>&#128293; Streak Widget</h2>
-    <span class="sec-sub">Computed from ClosedAt-sorted sequence</span>
-  </div>
-  <div class="streak-grid" id="streakGrid"></div>
+<div class="sec-hdr"><h2>&#127894; Grade Analysis</h2><span class="sec-sub">GradeLabel Display &middot; Click to drill down by numeric Grade</span></div>
+<div class="card"><table class="grade-summary"><thead><tr><th></th><th>Grade</th><th>Trades</th><th>Win Rate</th><th>Avg RR</th></tr></thead><tbody id="gradeBody"></tbody></table></div>
 </div>
-
-<!-- S8: OPEN WIDGET -->
 <div>
-  <div class="sec-hdr">
-    <h2>&#128194; Open / Live Trades</h2>
-    <span class="sec-sub">Isolated from all performance KPIs</span>
-  </div>
-  <div class="open-widget">
-    <div class="open-count" id="openCount">—</div>
-    <div class="open-lbl">Open Trades</div>
-    <div class="open-disclaimer">&#9888; Not included in Win Rate, Expectancy, or any performance KPI</div>
-  </div>
+<div class="sec-hdr"><h2>&#128200; Equity Curve &#8212; Cumulative R</h2><span class="sec-sub">WIN = +RR &middot; LOSS = -1R &middot; Closed trades only &middot; Time-filter aware</span></div>
+<div class="card"><div class="equity-wrap"><canvas class="equity-canvas" id="equityCanvas"></canvas></div><div class="equity-stats" id="equityStats"></div></div>
 </div>
-
-<!-- S9: RECENT CLOSED TRADES -->
 <div>
-  <div class="sec-hdr">
-    <h2>&#128203; Recent Closed Trades</h2>
-    <span class="sec-sub">WIN &amp; LOSS only &middot; Newest first &middot; OPEN and REMOVED excluded</span>
-  </div>
-  <div class="card">
-    <div style="overflow-x:auto">
-      <table class="trade-table">
-        <thead>
-          <tr>
-            <th data-sort="date">Date</th>
-            <th data-sort="source">Source</th>
-            <th data-sort="symbol">Symbol</th>
-            <th data-sort="tf">TF</th>
-            <th data-sort="direction">Dir</th>
-            <th data-sort="entry">Entry</th>
-            <th data-sort="slpts">SL Pts</th>
-            <th data-sort="rr">RR</th>
-            <th data-sort="grade">Grade</th>
-            <th data-sort="mq">MQ</th>
-            <th data-sort="confidence">Conf</th>
-            <th data-sort="killzone">KZ</th>
-            <th data-sort="signal">Signal</th>
-            <th data-sort="session">Session</th>
-            <th data-sort="result">Result</th>
-          </tr>
-        </thead>
-        <tbody id="tradeBody"></tbody>
-      </table>
-    </div>
-    <button class="load-more" id="loadMore">&#9660; Load More</button>
-    <div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:right" id="tradeCount"></div>
-  </div>
+<div class="sec-hdr"><h2>&#128293; Streak Widget</h2><span class="sec-sub">Computed from ClosedAt-sorted sequence</span></div>
+<div class="streak-grid" id="streakGrid"></div>
 </div>
-
-</div><!-- /wrap -->
-
-<footer class="site-footer">
-  <span>MONMON100 &middot; Unified_Trades &middot; Single Source of Truth</span>
-  <span id="footerInfo">Phase 1 &middot; Mock Data Mode</span>
-</footer>
+<div>
+<div class="sec-hdr"><h2>&#128194; Open / Live Trades</h2><span class="sec-sub">Isolated from all performance KPIs</span></div>
+<div class="open-widget"><div class="open-count" id="openCount">&#8212;</div><div class="open-lbl">Open Trades</div><div class="open-disclaimer">&#9888; Not included in Win Rate, Expectancy, or any performance KPI</div></div>
+</div>
+<div>
+<div class="sec-hdr"><h2>&#128203; Recent Closed Trades</h2><span class="sec-sub">WIN &amp; LOSS only &middot; Newest first &middot; OPEN and REMOVED excluded</span></div>
+<div class="card"><div style="overflow-x:auto">
+<table class="trade-table"><thead><tr><th data-sort="date">Date</th><th data-sort="source">Source</th><th data-sort="symbol">Symbol</th><th data-sort="tf">TF</th><th data-sort="direction">Dir</th><th data-sort="entry">Entry</th><th data-sort="slpts">SL Pts</th><th data-sort="rr">RR</th><th data-sort="grade">Grade</th><th data-sort="mq">MQ</th><th data-sort="confidence">Conf</th><th data-sort="killzone">KZ</th><th data-sort="signal">Signal</th><th data-sort="session">Session</th><th data-sort="result">Result</th></tr></thead><tbody id="tradeBody"></tbody></table>
+</div>
+<button class="load-more" id="loadMore">&#9660; Load More</button>
+<div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:right" id="tradeCount"></div>
+</div>
+</div>
+</div>
+<footer class="site-footer"><span>MONMON100 &middot; Unified_Trades &middot; Single Source of Truth</span><span id="footerInfo">Phase 2 &middot; Initializing...</span></footer>
 <script>
-// ============================================================
-// MONMON100 Dashboard V2 — Phase 1 Mock Data Integration
-// Data source: Unified_Trades (mock)
-// No Google Sheets yet. All calculations from mock data.
-// ============================================================
-
-const CONFIG = {
-  API_URL: 'http://202.182.125.225:5678/webhook/dashboard-data',
-  START_DATE: '2026-06-15',
-  PHASE: 1
-};
-
-// ---- MOCK DATA (Phase 1) ----
-// Represents Unified_Trades schema: Date,TradeID,RowIndex,Source,Symbol,TF,Signal,
-// Direction,Entry,SL,TP1,TP2,SL_Pts,Grade,MQ,ADX,Bias,Session,KillZone,Confidence,RR,Result,ClosedAt,GradeLabel
-const MOCK_TRADES = [
-  {date:'6/15/2026',tradeId:'TELEGRAM_XAUUSD_M15_BUY_001',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'BOS+FVG+OB',direction:'BUY',entry:3210.5,slPts:15,grade:88,mq:'',confidence:82,killZone:'London Open',rr:2.3,result:'WIN',closedAt:'2026-06-15T09:42:00Z',gradeLabel:'A',session:'London'},
-  {date:'6/15/2026',tradeId:'TELEGRAM_XAUUSD_M15_SELL_002',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'FVG+MSS',direction:'SELL',entry:3225.0,slPts:18,grade:85,mq:'',confidence:76,killZone:'London Open',rr:2.1,result:'WIN',closedAt:'2026-06-15T11:15:00Z',gradeLabel:'A',session:'London'},
-  {date:'6/15/2026',tradeId:'EA_XAUUSD_M30_BUY_003',source:'EA',symbol:'XAUUSD',tf:'M30',signal:'BOS',direction:'BUY',entry:3198.0,slPts:20,grade:'',mq:2,confidence:70,killZone:'',rr:2.0,result:'WIN',closedAt:'2026-06-15T14:30:00Z',gradeLabel:'',session:'New York'},
-  {date:'6/15/2026',tradeId:'TELEGRAM_XAUUSD_M15_BUY_004',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'BOS+FVG+OB',direction:'BUY',entry:3205.0,slPts:12,grade:92,mq:'',confidence:90,killZone:'NY AM',rr:2.5,result:'WIN',closedAt:'2026-06-15T16:00:00Z',gradeLabel:'A',session:'New York'},
-  {date:'6/16/2026',tradeId:'TELEGRAM_XAUUSD_M15_SELL_005',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'FVG+MSS',direction:'SELL',entry:3240.0,slPts:16,grade:76,mq:'',confidence:68,killZone:'London Open',rr:1.0,result:'LOSS',closedAt:'2026-06-16T09:10:00Z',gradeLabel:'B',session:'London'},
-  {date:'6/16/2026',tradeId:'EA_XAUUSD_M30_SELL_006',source:'EA',symbol:'XAUUSD',tf:'M30',signal:'BOS',direction:'SELL',entry:3245.0,slPts:22,grade:'',mq:1,confidence:65,killZone:'',rr:2.0,result:'WIN',closedAt:'2026-06-16T12:00:00Z',gradeLabel:'',session:'London'},
-  {date:'6/16/2026',tradeId:'TELEGRAM_XAUUSD_M15_BUY_007',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'BOS+FVG+OB',direction:'BUY',entry:3220.0,slPts:14,grade:85,mq:'',confidence:80,killZone:'London Open',rr:2.2,result:'WIN',closedAt:'2026-06-16T14:45:00Z',gradeLabel:'A',session:'London'},
-  {date:'6/16/2026',tradeId:'INDICATOR_XAUUSD_H1_BUY_008',source:'Indicator',symbol:'XAUUSD',tf:'H1',signal:'RSI+MACD',direction:'BUY',entry:3215.0,slPts:25,grade:'',mq:'',confidence:60,killZone:'',rr:1.5,result:'WIN',closedAt:'2026-06-16T18:00:00Z',gradeLabel:'',session:'New York'},
-  {date:'6/17/2026',tradeId:'TELEGRAM_XAUUSD_M15_BUY_009',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'BOS+FVG+OB',direction:'BUY',entry:3230.0,slPts:13,grade:88,mq:'',confidence:85,killZone:'NY AM',rr:2.4,result:'WIN',closedAt:'2026-06-17T10:20:00Z',gradeLabel:'A',session:'New York'},
-  {date:'6/17/2026',tradeId:'EA_XAUUSD_M30_BUY_010',source:'EA',symbol:'XAUUSD',tf:'M30',signal:'BOS',direction:'BUY',entry:3218.0,slPts:20,grade:'',mq:2,confidence:72,killZone:'',rr:2.1,result:'WIN',closedAt:'2026-06-17T13:30:00Z',gradeLabel:'',session:'New York'},
-  {date:'6/17/2026',tradeId:'TELEGRAM_XAUUSD_M15_SELL_011',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'FVG+MSS',direction:'SELL',entry:3250.0,slPts:17,grade:72,mq:'',confidence:65,killZone:'London Open',rr:1.8,result:'WIN',closedAt:'2026-06-17T15:45:00Z',gradeLabel:'B',session:'London'},
-  {date:'6/17/2026',tradeId:'EA_XAUUSD_M30_SELL_012',source:'EA',symbol:'XAUUSD',tf:'M30',signal:'BOS',direction:'SELL',entry:3260.0,slPts:18,grade:'',mq:3,confidence:78,killZone:'',rr:2.0,result:'WIN',closedAt:'2026-06-17T17:00:00Z',gradeLabel:'',session:'New York'},
-  {date:'6/18/2026',tradeId:'TELEGRAM_XAUUSD_M15_BUY_013',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'BOS+FVG+OB',direction:'BUY',entry:3245.0,slPts:15,grade:76,mq:'',confidence:74,killZone:'London Open',rr:2.0,result:'WIN',closedAt:'2026-06-18T09:30:00Z',gradeLabel:'B',session:'London'},
-  {date:'6/18/2026',tradeId:'TELEGRAM_XAUUSD_M15_BUY_014',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'BOS',direction:'BUY',entry:3255.0,slPts:12,grade:80,mq:'',confidence:79,killZone:'NY AM',rr:2.3,result:'WIN',closedAt:'2026-06-18T14:00:00Z',gradeLabel:'B',session:'New York'},
-  {date:'6/18/2026',tradeId:'TELEGRAM_XAUUSD_M15_SELL_015',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'FVG+MSS',direction:'SELL',entry:3270.0,slPts:16,grade:85,mq:'',confidence:82,killZone:'London Open',rr:2.1,result:'WIN',closedAt:'2026-06-18T11:20:00Z',gradeLabel:'A',session:'London'},
-  {date:'6/18/2026',tradeId:'TELEGRAM_XAUUSD_M15_BUY_016',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'BOS+FVG+OB',direction:'BUY',entry:3260.0,slPts:14,grade:65,mq:'',confidence:62,killZone:'Asian',rr:1.6,result:'WIN',closedAt:'2026-06-18T20:00:00Z',gradeLabel:'C',session:'Asian'},
-  {date:'6/18/2026',tradeId:'TELEGRAM_XAUUSD_M15_1782026450225',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'BOS+FVG+OB',direction:'BUY',entry:3285.0,slPts:15,grade:88,mq:'',confidence:82,killZone:'London Open',rr:2.3,result:'WIN',closedAt:'2026-06-18T22:00:00Z',gradeLabel:'A',session:'London'},
-  // OPEN trades (historical EA)
-  {date:'6/15/2026',tradeId:'EA_XAUUSD_H1_BUY_ROW12',source:'EA',symbol:'XAUUSD',tf:'H1',signal:'BOS',direction:'BUY',entry:3180.0,slPts:30,grade:'',mq:1,confidence:70,killZone:'',rr:'',result:'OPEN',closedAt:'',gradeLabel:'',session:'London'},
-  {date:'6/15/2026',tradeId:'EA_XAUUSD_H1_SELL_ROW27',source:'EA',symbol:'XAUUSD',tf:'H1',signal:'BOS',direction:'SELL',entry:3220.0,slPts:28,grade:'',mq:2,confidence:68,killZone:'',rr:'',result:'OPEN',closedAt:'',gradeLabel:'',session:'New York'},
-  {date:'6/15/2026',tradeId:'EA_XAUUSD_H1_BUY_ROW32',source:'EA',symbol:'XAUUSD',tf:'H1',signal:'BOS',direction:'BUY',entry:3195.0,slPts:25,grade:'',mq:0,confidence:65,killZone:'',rr:'',result:'OPEN',closedAt:'',gradeLabel:'',session:'Asian'},
-];
-
-// ---- STATE ----
-let allTrades = [...MOCK_TRADES];
-let period = 'all', srcFilter = 'All', gradeFilter = 'All', resultFilter = 'All';
-let tradePageSize = 10, tradeOffset = 0;
-let sortKey = 'date', sortDir = -1;
-
-// ---- HELPERS ----
-function isWin(t){ return String(t.result).toUpperCase() === 'WIN'; }
-function isLoss(t){ return String(t.result).toUpperCase() === 'LOSS'; }
-function isClosed(t){ return isWin(t) || isLoss(t); }
-function isOpen(t){ return String(t.result).toUpperCase() === 'OPEN'; }
-
-function pct(n,d){ return d===0 ? 0 : (n/d*100); }
-function fmtPct(x){ return isFinite(x) ? x.toFixed(1)+'%' : '—'; }
-function fmtR(x){ return isFinite(x) && x!=='' ? (x>=0?'+':'')+Number(x).toFixed(2)+'R' : '—'; }
-function fmtNum(x){ return (x===''||x===null||x===undefined) ? '—' : x; }
-
-function inPeriod(t){
-  const ref = t.closedAt || t.date;
-  if(!ref) return false;
-  const d = new Date(typeof ref === 'string' && !ref.includes('T') ? ref.replace(///g,'-') : ref);
-  if(isNaN(d)) return false;
-  if(period === 'all') return true;
-  const now = new Date();
-  const since = new Date();
-  if(period === 'week') since.setDate(now.getDate()-7);
-  else if(period === 'month') since.setMonth(now.getMonth()-1);
-  else if(period === 'year') since.setFullYear(now.getFullYear()-1);
-  return d >= since;
-}
-
-function getGradeLabel(t){
-  const gl = String(t.gradeLabel||'').trim();
-  if(gl === 'A' || gl === 'B' || gl === 'C') return gl;
-  return 'NA';
-}
-
-function getClosedFiltered(){
-  return allTrades.filter(t => {
-    if(!isClosed(t)) return false;
-    if(!inPeriod(t)) return false;
-    if(srcFilter !== 'All' && t.source !== srcFilter) return false;
-    if(gradeFilter !== 'All' && getGradeLabel(t) !== gradeFilter) return false;
-    if(resultFilter !== 'All'){
-      if(resultFilter === 'WIN' && !isWin(t)) return false;
-      if(resultFilter === 'LOSS' && !isLoss(t)) return false;
-    }
-    return true;
-  });
-}
-
-function groupBy(arr, key){
-  const m = {};
-  arr.forEach(t => {
-    const k = String(t[key]||'').trim() || '—';
-    if(!m[k]) m[k] = {key:k, trades:[], wins:0};
-    m[k].trades.push(t);
-    if(isWin(t)) m[k].wins++;
-  });
-  return Object.values(m);
-}
-
-function calcExpectancy(arr){
-  const wins = arr.filter(isWin);
-  const losses = arr.filter(isLoss);
-  if(!arr.length) return null;
-  const wr = wins.length / arr.length;
-  const lr = losses.length / arr.length;
-  const avgWinRR = wins.length ? wins.reduce((s,t)=>s+Number(t.rr||0),0)/wins.length : 0;
-  const avgLossR = 1.0; // LOSS always = -1R
-  return (wr * avgWinRR) - (lr * avgLossR);
-}
-
-function calcAvgRR(arr){
-  const wins = arr.filter(t=>isWin(t)&&Number(t.rr)>0);
-  if(!wins.length) return null;
-  return wins.reduce((s,t)=>s+Number(t.rr),0)/wins.length;
-}
-
-function calcProfitFactor(arr){
-  const grossW = arr.filter(isWin).reduce((s,t)=>s+Number(t.rr||0),0);
-  const grossL = arr.filter(isLoss).length * 1.0;
-  if(grossL === 0) return grossW > 0 ? Infinity : null;
-  return grossW / grossL;
-}
-
-// ---- RENDER FUNCTIONS ----
-
-function renderExecSummary(closed){
-  const wins = closed.filter(isWin).length;
-  const losses = closed.filter(isLoss).length;
-  const wr = pct(wins, closed.length);
-  const exp = calcExpectancy(closed);
-  const avgRR = calcAvgRR(closed);
-  const pf = calcProfitFactor(closed);
-  document.getElementById('kpiTotal').textContent = closed.length || '—';
-  document.getElementById('kpiTotalSub').textContent = 'closed trades';
-  document.getElementById('kpiWR').textContent = closed.length ? fmtPct(wr) : '—';
-  document.getElementById('kpiWRSub').textContent = wins+'W · '+losses+'L';
-  document.getElementById('kpiExp').textContent = exp !== null ? fmtR(exp) : '—';
-  document.getElementById('kpiAvgRR').textContent = avgRR !== null ? fmtR(avgRR) : '—';
-  const pfEl = document.getElementById('kpiPF');
-  pfEl.textContent = pf !== null ? (pf === Infinity ? '∞' : pf.toFixed(1)) : '—';
-}
-
-function renderWarRoom(closed){
-  const sources = ['Telegram','EA','Indicator'];
-  const rows = sources.map(src => {
-    const arr = closed.filter(t=>t.source===src);
-    const wins = arr.filter(isWin).length;
-    const wr = pct(wins,arr.length);
-    const exp = calcExpectancy(arr);
-    const avgRR = calcAvgRR(arr);
-    return {src, count:arr.length, wins, wr, exp, avgRR};
-  });
-  const totalWins = closed.filter(isWin).length;
-  const totalWR = pct(totalWins,closed.length);
-  const totalExp = calcExpectancy(closed);
-  const totalAvgRR = calcAvgRR(closed);
-
-  const body = document.getElementById('warRoomBody');
-  body.innerHTML = rows.map(r => r.count===0 ? `
-    <tr>
-      <td class="gold-text">${r.src}</td>
-      <td class="muted-text">0</td>
-      <td class="muted-text">—</td>
-      <td class="muted-text">—</td>
-      <td class="muted-text">—</td>
-    </tr>` : `
-    <tr>
-      <td class="gold-text">${r.src}</td>
-      <td>${r.count}</td>
-      <td style="color:${r.wr>=90?'var(--gold)':r.wr>=50?'var(--champ)':'var(--red)'}">${fmtPct(r.wr)}</td>
-      <td style="color:${r.exp>=0?'var(--gold)':'var(--red)'}">${r.exp!==null?fmtR(r.exp):'—'}</td>
-      <td>${r.avgRR!==null?fmtR(r.avgRR):'—'}</td>
-    </tr>`).join('') + `
-    <tr class="total-row">
-      <td>TOTAL</td>
-      <td>${closed.length}</td>
-      <td>${closed.length?fmtPct(totalWR):'—'}</td>
-      <td>${totalExp!==null?fmtR(totalExp):'—'}</td>
-      <td>${totalAvgRR!==null?fmtR(totalAvgRR):'—'}</td>
-    </tr>`;
-}
-
-function renderBattle(closed){
-  const sources = ['Telegram','EA','Indicator'];
-  const stats = sources.map(src => {
-    const arr = closed.filter(t=>t.source===src);
-    const wins = arr.filter(isWin).length;
-    const wr = pct(wins,arr.length);
-    const exp = calcExpectancy(arr);
-    const avgRR = calcAvgRR(arr);
-    return {src, count:arr.length, wins, wr, exp, avgRR, eligible: arr.length >= 5};
-  });
-
-  const eligible = stats.filter(s=>s.eligible).sort((a,b)=>(b.exp||0)-(a.exp||0));
-  const medals = ['🥇','🥈','🥉'];
-  const classes = ['champion','runner','third'];
-  const grid = document.getElementById('battleGrid');
-
-  // Build ranked list (eligible only) + not-eligible appended
-  const ranked = [...eligible];
-  const notEligible = stats.filter(s=>!s.eligible);
-
-  const cards = [...ranked, ...notEligible].map((s, i) => {
-    const isRanked = s.eligible;
-    const rank = ranked.indexOf(s);
-    const maxExp = eligible.length ? Math.max(...eligible.map(e=>e.exp||0)) : 1;
-    const barW = isRanked && maxExp>0 ? Math.round(((s.exp||0)/maxExp)*100) : 0;
-    if(!isRanked){
-      return `<div class="battle-card no-data">
-        <div class="medal">—</div>
-        <div class="battle-name">${s.src}</div>
-        <div class="not-enough">Not Enough Data<br><small>(${s.count} trade${s.count===1?'':'s'} — min 5 required)</small></div>
-      </div>`;
-    }
-    return `<div class="battle-card ${classes[rank]||''}">
-      <div class="medal">${medals[rank]||'—'}</div>
-      <div class="battle-name">${s.src}</div>
-      <div class="battle-stat"><span class="label">Expectancy</span><span class="value" style="color:var(--gold)">${fmtR(s.exp)}</span></div>
-      <div class="battle-stat"><span class="label">Win Rate</span><span class="value">${fmtPct(s.wr)}</span></div>
-      <div class="battle-stat"><span class="label">Trades</span><span class="value">${s.count}</span></div>
-      <div class="battle-stat"><span class="label">Avg RR</span><span class="value">${s.avgRR!==null?fmtR(s.avgRR):'—'}</span></div>
-      <div class="battle-bar"><div class="battle-bar-fill" style="width:${barW}%"></div></div>
-    </div>`;
-  });
-  grid.innerHTML = cards.join('');
-}
-
-function renderSignal(closed){
-  const groups = groupBy(closed,'signal').sort((a,b)=>b.trades.length-a.trades.length);
-  const body = document.getElementById('signalBody');
-  body.innerHTML = groups.length ? groups.map(g=>{
-    const wr = pct(g.wins,g.trades.length);
-    const avgRR = calcAvgRR(g.trades);
-    return `<tr>
-      <td style="font-family:'Courier New',monospace;font-size:11px">${g.key}</td>
-      <td>${g.trades.length}</td>
-      <td style="color:${wr>=80?'var(--gold)':wr>=50?'var(--champ)':'var(--red)'}">${fmtPct(wr)}</td>
-      <td>${avgRR!==null?fmtR(avgRR):'—'}</td>
-    </tr>`;
-  }).join('') + `<tr style="border-top:1px solid var(--gold)">
-    <td style="color:var(--gold);font-weight:700">TOTAL</td>
-    <td style="color:var(--gold);font-weight:700">${closed.length}</td>
-    <td style="color:var(--gold);font-weight:700">${fmtPct(pct(closed.filter(isWin).length,closed.length))}</td>
-    <td style="color:var(--gold);font-weight:700">${fmtR(calcAvgRR(closed))}</td>
-  </tr>` : '<tr><td colspan="4" style="color:var(--muted);font-style:italic">No closed trades in this period.</td></tr>';
-}
-
-function renderSession(closed){
-  const groups = groupBy(closed,'session').sort((a,b)=>b.trades.length-a.trades.length);
-  const body = document.getElementById('sessionBody');
-  body.innerHTML = groups.length ? groups.map(g=>{
-    const wr = pct(g.wins,g.trades.length);
-    const avgRR = calcAvgRR(g.trades);
-    return `<tr>
-      <td>${g.key}</td>
-      <td>${g.trades.length}</td>
-      <td style="color:${wr>=80?'var(--gold)':wr>=50?'var(--champ)':'var(--red)'}">${fmtPct(wr)}</td>
-      <td>${avgRR!==null?fmtR(avgRR):'—'}</td>
-    </tr>`;
-  }).join('') : '<tr><td colspan="4" style="color:var(--muted);font-style:italic">No data.</td></tr>';
-
-  // Heatmap
-  const hm = document.getElementById('sessionHeatmap');
-  hm.innerHTML = groups.map(g=>{
-    const wr = pct(g.wins,g.trades.length);
-    const barPct = Math.round(wr);
-    const goldR = parseInt('D4',16), goldG = parseInt('AF',16), goldB = parseInt('37',16);
-    const hex = (v) => v.toString(16).padStart(2,'0');
-    const r = Math.round(0x2A * (1-barPct/100) + goldR*(barPct/100));
-    const gv = Math.round(0x2A * (1-barPct/100) + goldG*(barPct/100));
-    const b = Math.round(0x00 * (1-barPct/100) + goldB*(barPct/100));
-    const color = '#'+hex(r)+hex(gv)+hex(b);
-    return `<div class="heatmap-row">
-      <div class="heatmap-lbl">${g.key}</div>
-      <div class="heatmap-bar-bg"><div class="heatmap-bar-fill" style="width:${barPct}%;background:${color}"></div></div>
-      <div class="heatmap-pct">${fmtPct(wr)}${wr===100?' ★':''}</div>
-    </div>`;
-  }).join('');
-}
-
-function renderGrade(closed){
-  const labels = ['A','B','C','NA'];
-  const labelNames = {A:'A',B:'B',C:'C',NA:'N/A'};
-  const labelClasses = {A:'grade-lbl-a',B:'grade-lbl-b',C:'grade-lbl-c',NA:'grade-lbl-na'};
-
-  // Group by gradeLabel, then sub-group by numeric grade
-  const byLabel = {};
-  labels.forEach(l => byLabel[l] = {trades:[],wins:0,byGrade:{}});
-  closed.forEach(t => {
-    const gl = getGradeLabel(t);
-    byLabel[gl].trades.push(t);
-    if(isWin(t)) byLabel[gl].wins++;
-    const g = t.grade !== '' && t.grade !== null && t.grade !== undefined ? String(t.grade) : '';
-    if(g){
-      if(!byLabel[gl].byGrade[g]) byLabel[gl].byGrade[g]={trades:[],wins:0};
-      byLabel[gl].byGrade[g].trades.push(t);
-      if(isWin(t)) byLabel[gl].byGrade[g].wins++;
-    }
-  });
-
-  const body = document.getElementById('gradeBody');
-  let html = '';
-  labels.forEach(l => {
-    const data = byLabel[l];
-    const wr = pct(data.wins,data.trades.length);
-    const avgRR = calcAvgRR(data.trades);
-    const hasDrill = Object.keys(data.byGrade).length > 0;
-    const rowId = 'grade-drill-'+l;
-    html += `<tr>
-      <td>${hasDrill ? `<button class="drill-toggle" onclick="toggleDrill('${rowId}')" id="btn-${rowId}">▶</button>` : ''}</td>
-      <td class="${labelClasses[l]}">${labelNames[l]}</td>
-      <td>${data.trades.length}</td>
-      <td style="color:${data.trades.length===0?'var(--dim)':wr>=80?'var(--gold)':wr>=50?'var(--champ)':'var(--red)'}">${data.trades.length?fmtPct(wr):'—'}</td>
-      <td>${data.trades.length&&avgRR!==null?fmtR(avgRR):'—'}</td>
-    </tr>`;
-    if(hasDrill){
-      const subGrades = Object.keys(data.byGrade).sort((a,b)=>Number(b)-Number(a));
-      subGrades.forEach(g => {
-        const sg = data.byGrade[g];
-        const sgwr = pct(sg.wins,sg.trades.length);
-        const sgRR = calcAvgRR(sg.trades);
-        html += `<tr class="drill-row hidden" data-drill="${rowId}">
-          <td></td>
-          <td class="${labelClasses[l]}" style="padding-left:24px">${labelNames[l]} (${g})</td>
-          <td>${sg.trades.length}</td>
-          <td>${fmtPct(sgwr)}</td>
-          <td>${sgRR!==null?fmtR(sgRR):'—'}</td>
-        </tr>`;
-      });
-    }
-  });
-  body.innerHTML = html;
-}
-
-window.toggleDrill = function(rowId){
-  const rows = document.querySelectorAll('[data-drill="'+rowId+'"]');
-  const btn = document.getElementById('btn-'+rowId);
-  const isHidden = rows[0]?.classList.contains('hidden');
-  rows.forEach(r => r.classList.toggle('hidden',!isHidden));
-  if(btn) btn.textContent = isHidden ? '▼' : '▶';
-};
-
-function renderEquityCurve(closed){
-  const sorted = [...closed].sort((a,b)=>{
-    const da = new Date(a.closedAt||a.date.replace(/\//g,'-'));
-    const db = new Date(b.closedAt||b.date.replace(/\//g,'-'));
-    return da - db;
-  });
-
-  const canvas = document.getElementById('equityCanvas');
-  const container = canvas.parentElement;
-  canvas.width = container.clientWidth || 800;
-  canvas.height = container.clientHeight || 260;
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  const PAD = {top:20,right:20,bottom:40,left:55};
-
-  // Build cumulative R series
-  const points = [];
-  let cum = 0;
-  sorted.forEach(t => {
-    if(isWin(t)) cum += Number(t.rr||0);
-    else if(isLoss(t)) cum -= 1;
-    points.push({cum, t});
-  });
-
-  if(!points.length){
-    ctx.fillStyle = '#444';
-    ctx.font = '13px Courier New';
-    ctx.textAlign = 'center';
-    ctx.fillText('No closed trades in this period', W/2, H/2);
-    return;
-  }
-
-  const allCum = [0, ...points.map(p=>p.cum)];
-  const minV = Math.min(...allCum);
-  const maxV = Math.max(...allCum);
-  const range = maxV - minV || 1;
-  const chartW = W - PAD.left - PAD.right;
-  const chartH = H - PAD.top - PAD.bottom;
-
-  const toX = (i) => PAD.left + (i/(points.length)) * chartW;
-  const toY = (v) => PAD.top + chartH - ((v-minV)/range)*chartH;
-
-  // Grid lines
-  ctx.strokeStyle = '#1A1A1A';
-  ctx.lineWidth = 1;
-  const gridLines = 5;
-  for(let i=0;i<=gridLines;i++){
-    const v = minV + (range/gridLines)*i;
-    const y = toY(v);
-    ctx.beginPath(); ctx.moveTo(PAD.left,y); ctx.lineTo(W-PAD.right,y); ctx.stroke();
-    ctx.fillStyle = '#666';
-    ctx.font = '10px Courier New';
-    ctx.textAlign = 'right';
-    ctx.fillText((v>=0?'+':'')+v.toFixed(1)+'R', PAD.left-4, y+3);
-  }
-
-  // Zero line
-  const zeroY = toY(0);
-  ctx.strokeStyle = '#333';
-  ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(PAD.left,zeroY); ctx.lineTo(W-PAD.right,zeroY); ctx.stroke();
-
-  // Draw step line
-  ctx.strokeStyle = '#D4AF37';
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.moveTo(toX(0), toY(0));
-  points.forEach((p,i)=>{
-    const x = toX(i+1);
-    const prevY = toY(i===0 ? 0 : points[i-1].cum);
-    ctx.lineTo(x, prevY);  // horizontal
-    ctx.lineTo(x, toY(p.cum));  // vertical
-  });
-  ctx.stroke();
-
-  // Dots
-  points.forEach((p,i)=>{
-    const x = toX(i+1);
-    const y = toY(p.cum);
-    ctx.fillStyle = isWin(p.t) ? '#D4AF37' : '#EF5350';
-    ctx.beginPath(); ctx.arc(x,y,3,0,Math.PI*2); ctx.fill();
-  });
-
-  // X labels (date)
-  ctx.fillStyle = '#666';
-  ctx.font = '9px Courier New';
-  ctx.textAlign = 'center';
-  const step = Math.max(1,Math.floor(points.length/6));
-  points.forEach((p,i)=>{
-    if(i%step===0 || i===points.length-1){
-      const x = toX(i+1);
-      const d = new Date(p.t.closedAt||p.t.date.replace(/\//g,'-'));
-      const label = (d.getMonth()+1)+'/'+(d.getDate());
-      ctx.fillText(label, x, H-PAD.bottom+14);
-    }
-  });
-
-  // Stats
-  const finalR = points[points.length-1]?.cum || 0;
-  const peakR = Math.max(...allCum);
-  let maxDD = 0, peak2 = allCum[0];
-  allCum.forEach(v=>{ peak2=Math.max(peak2,v); maxDD=Math.max(maxDD,peak2-v); });
-  document.getElementById('equityStats').innerHTML =
-    `<div class="equity-stat"><span class="eq-lbl">Current:</span><span class="eq-val">${fmtR(finalR)}</span></div>
-     <div class="equity-stat"><span class="eq-lbl">Peak:</span><span class="eq-val">${fmtR(peakR)}</span></div>
-     <div class="equity-stat"><span class="eq-lbl">Max Drawdown:</span><span class="eq-val eq-drawdown">-${maxDD.toFixed(2)}R</span></div>
-     <div class="equity-stat"><span class="eq-lbl">Trades plotted:</span><span class="eq-val">${points.length}</span></div>`;
-}
-
-function renderStreak(closed){
-  const sorted = [...closed].sort((a,b)=>{
-    const da = new Date(a.closedAt||a.date.replace(/\//g,'-'));
-    const db = new Date(b.closedAt||b.date.replace(/\//g,'-'));
-    return da - db;
-  });
-
-  let currentStr=0, currentType=null;
-  let longestWin=0, longestLoss=0, tempWin=0, tempLoss=0;
-  sorted.forEach(t=>{
-    if(isWin(t)){tempWin++;tempLoss=0;longestWin=Math.max(longestWin,tempWin);}
-    else{tempLoss++;tempWin=0;longestLoss=Math.max(longestLoss,tempLoss);}
-  });
-  // Current (from end)
-  if(sorted.length){
-    const last = sorted[sorted.length-1];
-    currentType = isWin(last)?'win':'loss';
-    for(let i=sorted.length-1;i>=0;i--){
-      if((isWin(sorted[i]) && currentType==='win')||(isLoss(sorted[i]) && currentType==='loss')) currentStr++;
-      else break;
-    }
-  }
-
-  const grid = document.getElementById('streakGrid');
-  const currentClass = currentType==='win'?'streak-current-win':'streak-current-loss';
-  const currentColor = currentType==='win'?'var(--green)':'var(--red)';
-  grid.innerHTML = `
-    <div class="streak-card ${currentClass||''}">
-      <div style="font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase">Current Streak</div>
-      <div class="streak-num" style="color:${currentColor||'var(--muted)'}">${currentStr||'—'}</div>
-      <div class="streak-lbl">${currentType?currentType.toUpperCase()+' STREAK':'—'}</div>
-      <div class="streak-sub">Active / ongoing</div>
-    </div>
-    <div class="streak-card">
-      <div style="font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase">🔥 Longest Win Streak</div>
-      <div class="streak-num streak-win">${longestWin||'—'}</div>
-      <div class="streak-lbl">Consecutive Wins</div>
-      <div class="streak-sub">All-time best</div>
-    </div>
-    <div class="streak-card">
-      <div style="font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase">Longest Loss Streak</div>
-      <div class="streak-num streak-loss">${longestLoss||'—'}</div>
-      <div class="streak-lbl">Consecutive Losses</div>
-      <div class="streak-sub">All-time worst</div>
-    </div>`;
-}
-
-function renderOpenWidget(){
-  const openTrades = allTrades.filter(isOpen);
-  document.getElementById('openCount').textContent = openTrades.length;
-}
-
-function renderTradeLog(closed){
-  const sortMap = {date:'closedAt',source:'source',symbol:'symbol',tf:'tf',direction:'direction',entry:'entry',slpts:'slPts',rr:'rr',grade:'grade',mq:'mq',confidence:'confidence',killzone:'killZone',signal:'signal',session:'session',result:'result'};
-  const sk = sortMap[sortKey] || 'closedAt';
-  const sorted = [...closed].sort((a,b)=>{
-    let x=a[sk]??'', y=b[sk]??'';
-    if(sk==='closedAt'||sk==='date'){x=new Date(String(x).replace(/\//g,'-'));y=new Date(String(y).replace(/\//g,'-'));}
-    if(['rr','grade','mq','confidence','slPts','entry'].includes(sk)){x=Number(x)||0;y=Number(y)||0;}
-    return x>y?sortDir:x<y?-sortDir:0;
-  });
-
-  const page = sorted.slice(0, tradeOffset + tradePageSize);
-  const body = document.getElementById('tradeBody');
-  body.innerHTML = page.length ? page.map(t => {
-    const gl = t.gradeLabel ? `${t.gradeLabel}${t.grade!==''&&t.grade!==null&&t.grade!==undefined?'('+t.grade+')':''}` : '—';
-    const resultCls = isWin(t)?'pill-win':'pill-loss';
-    const resultTxt = isWin(t)?'WIN ✓':'LOSS ✗';
-    const dateStr = String(t.closedAt||t.date||'').slice(0,10);
-    return `<tr class="${isWin(t)?'win-row':'loss-row'}">
-      <td>${dateStr}</td>
-      <td>${t.source}</td>
-      <td>${t.symbol||'—'}</td>
-      <td>${t.tf||'—'}</td>
-      <td class="${t.direction==='BUY'?'dir-buy':'dir-sell'}">${t.direction==='BUY'?'↑ BUY':'↓ SELL'}</td>
-      <td>${t.entry||'—'}</td>
-      <td>${t.slPts||'—'}</td>
-      <td>${t.rr||'—'}</td>
-      <td style="font-size:11px">${gl}</td>
-      <td>${fmtNum(t.mq)}</td>
-      <td>${fmtNum(t.confidence)}</td>
-      <td style="font-size:11px">${t.killZone||'—'}</td>
-      <td style="font-size:11px;font-family:'Courier New',monospace">${t.signal||'—'}</td>
-      <td>${t.session||'—'}</td>
-      <td><span class="pill ${resultCls}">${resultTxt}</span></td>
-    </tr>`;
-  }).join('') : '<tr><td colspan="15" style="color:var(--muted);font-style:italic;padding:16px">No closed trades in this period.</td></tr>';
-
-  document.getElementById('tradeCount').textContent = `Showing ${Math.min(page.length,sorted.length)} of ${sorted.length} closed trades`;
-  document.getElementById('loadMore').style.display = tradeOffset+tradePageSize >= sorted.length ? 'none' : 'block';
-}
-
-// ---- MAIN RENDER ----
-function render(){
-  const closed = getClosedFiltered();
-  renderExecSummary(closed);
-  renderWarRoom(closed);
-  renderBattle(closed);
-  renderSignal(closed);
-  renderSession(closed);
-  renderGrade(closed);
-  renderEquityCurve(closed);
-  renderStreak(closed);
-  renderOpenWidget();
-  tradeOffset = 0;
-  renderTradeLog(closed);
-  document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString()+' (Mock Data)';
-}
-
-// ---- SORT HEADERS ----
-document.querySelectorAll('.trade-table th[data-sort]').forEach(th=>{
-  th.addEventListener('click',()=>{
-    const k=th.dataset.sort;
-    if(sortKey===k) sortDir=-sortDir; else {sortKey=k;sortDir=-1;}
-    renderTradeLog(getClosedFiltered());
-  });
-});
-
-// ---- LOAD MORE ----
-document.getElementById('loadMore').addEventListener('click',()=>{
-  tradeOffset += tradePageSize;
-  renderTradeLog(getClosedFiltered());
-});
-
-// ---- FILTER BAR ----
-document.querySelectorAll('.fbtn[data-period]').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.fbtn[data-period]').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    period=btn.dataset.period;
-    render();
-  });
-});
+const CONFIG={API_URL:'http://202.182.125.225:5678/webhook/dashboard-data',REFRESH_MS:120000,PHASE:2};
+const SMC_SIGNALS=new Set(['BOS','BOS+OB','BOS+FVG+OB','FVG+MSS','BOS+FVG','OB']);
+const INDICATOR_SIGNALS=new Set(['RSI+MACD','MACD','RSI','RSI+BB','STOCH+RSI']);
+const LEGACY_DIR_SIGNALS=new Set(['BUY','SELL']);
+function normalizeSignalDisplay(sig){const s=String(sig||'').trim().toUpperCase();if(!s||s==='—'||s==='N/A')return{display:'—',type:'none'};if(LEGACY_DIR_SIGNALS.has(s))return{display:s+' (Legacy)',type:'legacy'};if(SMC_SIGNALS.has(String(sig).trim()))return{display:String(sig).trim(),type:'smc'};if(INDICATOR_SIGNALS.has(String(sig).trim()))return{display:String(sig).trim(),type:'indicator'};return{display:String(sig).trim(),type:'other'};}
+function getSignalKey(sig){const s=String(sig||'').trim().toUpperCase();if(LEGACY_DIR_SIGNALS.has(s))return s+' (Legacy)';return String(sig||'').trim()||'—';}
+const TF_MAP={'1':'M1','3':'M3','5':'M5','15':'M15','30':'M30','60':'H1','240':'H4','1440':'D1','M3':'M3','M5':'M5','M15':'M15','M30':'M30','H1':'H1','H4':'H4'};
+function normalizeTFDisplay(tf){const s=String(tf||'').trim();if(!s||s==='N/A'||s==='blank')return 'Unknown';return TF_MAP[s]||TF_MAP[s.toUpperCase()]||s;}
+function adaptRow(r){const result=String(r.Result||r.result||'').trim().toUpperCase();const gradeRaw=r.Grade!==undefined?r.Grade:r.grade;const gradeLabelRaw=String(r.GradeLabel||r.gradeLabel||'').trim();const rrRaw=r.RR!==undefined?r.RR:r.rr;const rr=rrRaw!==''&&rrRaw!==null&&rrRaw!==undefined?Number(rrRaw):'';let source=String(r.Source||r.source||'').trim();if(source==='MM_DATA_SENDER'||source.toLowerCase()==='telegram')source='Telegram';else if(source.toLowerCase()==='ea')source='EA';else if(source.toLowerCase()==='indicator')source='Indicator';const sig=String(r.Signal||r.signal||'').trim();return{date:r.Date||r.date||'',tradeId:r.TradeID||r.tradeId||'',source,symbol:r.Symbol||r.symbol||'XAUUSD',tf:normalizeTFDisplay(r.TF||r.tf||''),signal:sig,signalKey:getSignalKey(sig),signalDisplay:normalizeSignalDisplay(sig),direction:String(r.Direction||r.direction||'').trim().toUpperCase(),entry:r.Entry||r.entry||'',slPts:r.SL_Pts||r.slPts||'',grade:gradeRaw!==undefined&&gradeRaw!==null&&gradeRaw!==''?gradeRaw:'',gradeLabel:gradeLabelRaw&&['A','B','C'].includes(gradeLabelRaw)?gradeLabelRaw:'NA',mq:r.MQ!==undefined?r.MQ:(r.mq!==undefined?r.mq:''),session:String(r.Session||r.session||'').trim()||'Unknown',killZone:r.KillZone||r.killZone||'',confidence:r.Confidence!==undefined?Number(r.Confidence):(r.confidence!==undefined?Number(r.confidence):''),rr:isNaN(Number(rr))?'':Number(rr),result,closedAt:r.ClosedAt||r.closedAt||''};}
+async function fetchLiveData(){try{const resp=await fetch(CONFIG.API_URL,{method:'GET',headers:{'Content-Type':'application/json'},signal:AbortSignal.timeout(10000)});if(!resp.ok)throw new Error('HTTP '+resp.status);const json=await resp.json();const raw=Array.isArray(json)?json:Array.isArray(json.data)?json.data:Array.isArray(json.trades)?json.trades:[];if(!raw.length)throw new Error('Empty');return{data:raw.map(adaptRow),source:'live'};}catch(err){console.warn('[MONMON100] API unavailable:',err.message);return{data:MOCK_TRADES.map(t=>({...t,signalKey:getSignalKey(t.signal||''),signalDisplay:normalizeSignalDisplay(t.signal||''),tf:normalizeTFDisplay(t.tf||'')})),source:'mock'};}}
+const MOCK_TRADES=[{date:'6/15/2026',tradeId:'TG_001',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'BOS+FVG+OB',direction:'BUY',entry:3210.5,slPts:15,grade:88,mq:'',confidence:82,killZone:'London Open',rr:2.3,result:'WIN',closedAt:'2026-06-15T09:42:00Z',gradeLabel:'A',session:'London'},{date:'6/15/2026',tradeId:'TG_002',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'FVG+MSS',direction:'SELL',entry:3225,slPts:18,grade:85,mq:'',confidence:76,killZone:'London Open',rr:2.1,result:'WIN',closedAt:'2026-06-15T11:15:00Z',gradeLabel:'A',session:'London'},{date:'6/16/2026',tradeId:'TG_003',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'SELL',direction:'SELL',entry:3240,slPts:16,grade:76,mq:'',confidence:68,killZone:'London Open',rr:1,result:'LOSS',closedAt:'2026-06-16T09:10:00Z',gradeLabel:'B',session:'London'},{date:'6/16/2026',tradeId:'EA_001',source:'EA',symbol:'XAUUSD',tf:'M30',signal:'BUY',direction:'BUY',entry:3245,slPts:22,grade:'',mq:1,confidence:65,killZone:'',rr:2,result:'WIN',closedAt:'2026-06-16T12:00:00Z',gradeLabel:'',session:'London'},{date:'6/16/2026',tradeId:'IND_001',source:'Indicator',symbol:'XAUUSD',tf:'H1',signal:'RSI+MACD',direction:'BUY',entry:3215,slPts:25,grade:'',mq:'',confidence:60,killZone:'',rr:1.5,result:'WIN',closedAt:'2026-06-16T18:00:00Z',gradeLabel:'',session:'New York'},{date:'6/17/2026',tradeId:'TG_004',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'BOS+FVG+OB',direction:'BUY',entry:3230,slPts:13,grade:88,mq:'',confidence:85,killZone:'NY AM',rr:2.4,result:'WIN',closedAt:'2026-06-17T10:20:00Z',gradeLabel:'A',session:'New York'},{date:'6/17/2026',tradeId:'TG_005',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'SELL',direction:'SELL',entry:3250,slPts:17,grade:72,mq:'',confidence:65,killZone:'London Open',rr:1.8,result:'WIN',closedAt:'2026-06-17T15:45:00Z',gradeLabel:'B',session:'London'},{date:'6/18/2026',tradeId:'TG_006',source:'Telegram',symbol:'XAUUSD',tf:'M15',signal:'BOS+FVG+OB',direction:'BUY',entry:3285,slPts:15,grade:88,mq:'',confidence:82,killZone:'London Open',rr:2.3,result:'WIN',closedAt:'2026-06-18T22:00:00Z',gradeLabel:'A',session:'London'},{date:'6/21/2026',tradeId:'EA_UT_V2_1782057055970',source:'EA',symbol:'XAUUSD',tf:'H1',signal:'BOS',direction:'BUY',entry:3350,slPts:20,grade:'',mq:'',confidence:75,killZone:'',rr:2,result:'WIN',closedAt:'2026-06-21T23:00:00Z',gradeLabel:'',session:'New York'},{date:'6/21/2026',tradeId:'IND_1782052883787',source:'Indicator',symbol:'XAUUSD',tf:'M15',signal:'RSI+MACD',direction:'BUY',entry:3348,slPts:18,grade:'',mq:'',confidence:60,killZone:'',rr:1.8,result:'WIN',closedAt:'2026-06-21T21:42:00Z',gradeLabel:'',session:'London'},{date:'6/18/2026',tradeId:'EA_XAUUSD_M3_BUY_1781756612535',source:'EA',symbol:'XAUUSD',tf:'M3',signal:'BUY',direction:'BUY',entry:3180,slPts:30,grade:'',mq:'',confidence:70,killZone:'',rr:'',result:'OPEN',closedAt:'',gradeLabel:'',session:'London'},{date:'6/18/2026',tradeId:'EA_XAUUSD_M15_BUY_1781782778812',source:'EA',symbol:'XAUUSD',tf:'M15',signal:'BUY',direction:'BUY',entry:3220,slPts:28,grade:'',mq:'',confidence:68,killZone:'',rr:'',result:'OPEN',closedAt:'',gradeLabel:'',session:'New York'},{date:'6/18/2026',tradeId:'EA_XAUUSD_M15_SELL_1781784436906',source:'EA',symbol:'XAUUSD',tf:'M15',signal:'SELL',direction:'SELL',entry:3195,slPts:25,grade:'',mq:'',confidence:65,killZone:'',rr:'',result:'OPEN',closedAt:'',gradeLabel:'',session:'Asian'}];
+let allTrades=[],dataSource='mock',period='all',srcFilter='All',gradeFilter='All',resultFilter='All',tradePageSize=10,tradeOffset=0,sortKey='date',sortDir=-1;
+function isWin(t){return t.result==='WIN';}function isLoss(t){return t.result==='LOSS';}function isClosed(t){return isWin(t)||isLoss(t);}function isOpen(t){return t.result==='OPEN';}
+function pct(n,d){return d===0?0:(n/d*100);}function fmtPct(x){return isFinite(x)?x.toFixed(1)+'%':'—';}function fmtR(x){return(x!==null&&x!==''&&isFinite(x))?(x>=0?'+':'')+Number(x).toFixed(2)+'R':'—';}function fmtNum(x){return(x===''||x===null||x===undefined)?'—':x;}
+function inPeriod(t){const ref=t.closedAt||t.date;if(!ref)return false;const d=new Date(typeof ref==='string'&&!ref.includes('T')?ref.replace(/\/g,'-'):ref);if(isNaN(d))return false;if(period==='all')return true;const now=new Date(),since=new Date();if(period==='week')since.setDate(now.getDate()-7);else if(period==='month')since.setMonth(now.getMonth()-1);else if(period==='year')since.setFullYear(now.getFullYear()-1);return d>=since;}
+function getClosedFiltered(){return allTrades.filter(t=>{if(!isClosed(t))return false;if(!inPeriod(t))return false;if(srcFilter!=='All'&&t.source!==srcFilter)return false;if(gradeFilter!=='All'&&t.gradeLabel!==gradeFilter)return false;if(resultFilter!=='All'){if(resultFilter==='WIN'&&!isWin(t))return false;if(resultFilter==='LOSS'&&!isLoss(t))return false;}return true;});}
+function calcExpectancy(arr){if(!arr.length)return null;const wins=arr.filter(isWin),losses=arr.filter(isLoss);return(wins.length/arr.length)*(wins.length?wins.reduce((s,t)=>s+Number(t.rr||0),0)/wins.length:0)-(losses.length/arr.length)*1;}
+function calcAvgRR(arr){const wins=arr.filter(t=>isWin(t)&&Number(t.rr)>0);return wins.length?wins.reduce((s,t)=>s+Number(t.rr),0)/wins.length:null;}
+function calcProfitFactor(arr){const gW=arr.filter(isWin).reduce((s,t)=>s+Number(t.rr||0),0),gL=arr.filter(isLoss).length;if(gL===0)return gW>0?Infinity:null;return gW/gL;}
+function renderExecSummary(c){const w=c.filter(isWin).length,l=c.filter(isLoss).length,wr=pct(w,c.length),exp=calcExpectancy(c),aRR=calcAvgRR(c),pf=calcProfitFactor(c);document.getElementById('kpiTotal').textContent=c.length||'—';document.getElementById('kpiTotalSub').textContent='closed trades';document.getElementById('kpiWR').textContent=c.length?fmtPct(wr):'—';document.getElementById('kpiWRSub').textContent=w+'W · '+l+'L';document.getElementById('kpiExp').textContent=exp!==null?fmtR(exp):'—';document.getElementById('kpiAvgRR').textContent=aRR!==null?fmtR(aRR):'—';document.getElementById('kpiPF').textContent=pf!==null?(pf===Infinity?'∞':pf.toFixed(1)):'—';}
+function renderWarRoom(c){const srcs=['Telegram','EA','Indicator'],rows=srcs.map(s=>{const a=c.filter(t=>t.source===s),w=a.filter(isWin).length;return{s,n:a.length,wr:pct(w,a.length),exp:calcExpectancy(a),aRR:calcAvgRR(a)};});const tW=c.filter(isWin).length;document.getElementById('warRoomBody').innerHTML=rows.map(r=>r.n===0?'<tr><td class="gold-text">'+r.s+'</td><td class="muted-text">0</td><td class="muted-text">—</td><td class="muted-text">—</td><td class="muted-text">—</td></tr>':'<tr><td class="gold-text">'+r.s+'</td><td>'+r.n+'</td><td style="color:'+(r.wr>=90?'var(--gold)':r.wr>=50?'var(--champ)':'var(--red)')+'">'+fmtPct(r.wr)+'</td><td style="color:'+(r.exp>=0?'var(--gold)':'var(--red)')+'">'+fmtR(r.exp)+'</td><td>'+fmtR(r.aRR)+'</td></tr>').join('')+'<tr class="total-row"><td>TOTAL</td><td>'+c.length+'</td><td>'+fmtPct(pct(tW,c.length))+'</td><td>'+fmtR(calcExpectancy(c))+'</td><td>'+fmtR(calcAvgRR(c))+'</td></tr>';}
+function renderBattle(c){const srcs=['Telegram','EA','Indicator'],stats=srcs.map(s=>{const a=c.filter(t=>t.source===s),w=a.filter(isWin).length;return{s,n:a.length,wr:pct(w,a.length),exp:calcExpectancy(a),aRR:calcAvgRR(a),ok:a.length>=5};});const elig=stats.filter(x=>x.ok).sort((a,b)=>(b.exp||0)-(a.exp||0));const medals=['🥇','🥈','🥉'],cls=['champion','runner','third'];const cards=[...elig,...stats.filter(x=>!x.ok)].map(s=>{const r=elig.indexOf(s),mE=elig.length?Math.max(...elig.map(e=>e.exp||0)):1,bW=s.ok&&mE>0?Math.round(((s.exp||0)/mE)*100):0;if(!s.ok)return'<div class="battle-card no-data"><div class="medal">—</div><div class="battle-name">'+s.s+'</div><div class="not-enough">Not Enough Data<br><small>('+s.n+' trade'+(s.n===1?'':'s')+' — min 5 required)</small></div></div>';return'<div class="battle-card '+(cls[r]||'')+'"><div class="medal">'+(medals[r]||'—')+'</div><div class="battle-name">'+s.s+'</div><div class="battle-stat"><span class="label">Expectancy</span><span class="value" style="color:var(--gold)">'+fmtR(s.exp)+'</span></div><div class="battle-stat"><span class="label">Win Rate</span><span class="value">'+fmtPct(s.wr)+'</span></div><div class="battle-stat"><span class="label">Trades</span><span class="value">'+s.n+'</span></div><div class="battle-stat"><span class="label">Avg RR</span><span class="value">'+fmtR(s.aRR)+'</span></div><div class="battle-bar"><div class="battle-bar-fill" style="width:'+bW+'%"></div></div></div>';});document.getElementById('battleGrid').innerHTML=cards.join('');}
+function renderSignal(c){const map={};c.forEach(t=>{const k=t.signalKey||getSignalKey(t.signal||''),sd=t.signalDisplay||normalizeSignalDisplay(t.signal||'');if(!map[k])map[k]={k,type:sd.type,t:[],w:0};map[k].t.push(t);if(isWin(t))map[k].w++;});const grps=Object.values(map).sort((a,b)=>b.t.length-a.t.length);const hasLeg=grps.some(g=>g.type==='legacy');const legNote='<tr><td colspan="4" style="font-size:10px;color:var(--dim);font-style:italic;padding:6px 10px">† Legacy BUY/SELL rows came from early data before explicit signal taxonomy was written to Unified_Trades.</td></tr>';document.getElementById('signalBody').innerHTML=(grps.length?grps.map(g=>{const wr=pct(g.w,g.t.length),aRR=calcAvgRR(g.t),tc=g.type==='smc'?'var(--gold)':g.type==='indicator'?'var(--champ)':g.type==='legacy'?'var(--dim)':'var(--muted)',badge=g.type==='legacy'?'<span style="font-size:9px;color:var(--dim);margin-left:4px">LEGACY</span>':g.type==='smc'?'<span style="font-size:9px;color:var(--gold);margin-left:4px">SMC</span>':g.type==='indicator'?'<span style="font-size:9px;color:var(--champ);margin-left:4px">IND</span>':'';return'<tr><td style="font-family:\'Courier New\',monospace;font-size:11px;color:'+tc+'">'+g.k+badge+'</td><td>'+g.t.length+'</td><td style="color:'+(wr>=80?'var(--gold)':wr>=50?'var(--champ)':'var(--red)')+'">'+fmtPct(wr)+'</td><td>'+fmtR(aRR)+'</td></tr>';}).join('')+(hasLeg?legNote:'')+'<tr style="border-top:1px solid var(--gold)"><td style="color:var(--gold);font-weight:700">TOTAL</td><td style="color:var(--gold);font-weight:700">'+c.length+'</td><td style="color:var(--gold);font-weight:700">'+fmtPct(pct(c.filter(isWin).length,c.length))+'</td><td style="color:var(--gold);font-weight:700">'+fmtR(calcAvgRR(c))+'</td></tr>':'<tr><td colspan="4" style="color:var(--muted);font-style:italic">No data.</td></tr>');}
+function renderSession(c){const map={};c.forEach(t=>{const k=t.session||'Unknown';if(!map[k])map[k]={k,t:[],w:0};map[k].t.push(t);if(isWin(t))map[k].w++;});const grps=Object.values(map).sort((a,b)=>b.t.length-a.t.length);document.getElementById('sessionBody').innerHTML=grps.length?grps.map(g=>{const wr=pct(g.w,g.t.length);return'<tr><td>'+g.k+'</td><td>'+g.t.length+'</td><td style="color:'+(wr>=80?'var(--gold)':wr>=50?'var(--champ)':'var(--red)')+'">'+fmtPct(wr)+'</td><td>'+fmtR(calcAvgRR(g.t))+'</td></tr>';}).join(''):'<tr><td colspan="4" style="color:var(--muted);font-style:italic">No data.</td></tr>';document.getElementById('sessionHeatmap').innerHTML=grps.map(g=>{const wr=pct(g.w,g.t.length),bp=Math.round(wr),hex=v=>v.toString(16).padStart(2,'0'),r=Math.round(0x2A*(1-bp/100)+0xD4*(bp/100)),gv=Math.round(0x2A*(1-bp/100)+0xAF*(bp/100)),b=Math.round(0+(0x37*(bp/100)));return'<div class="heatmap-row"><div class="heatmap-lbl">'+g.k+'</div><div class="heatmap-bar-bg"><div class="heatmap-bar-fill" style="width:'+bp+'%;background:#'+hex(r)+hex(gv)+hex(b)+'"></div></div><div class="heatmap-pct">'+fmtPct(wr)+(wr===100?' ★':'')+'</div></div>';}).join('');}
+function renderGrade(c){const lbs=['A','B','C','NA'],lbN={A:'A',B:'B',C:'C',NA:'N/A'},lbC={A:'grade-lbl-a',B:'grade-lbl-b',C:'grade-lbl-c',NA:'grade-lbl-na'},bL={};lbs.forEach(l=>bL[l]={t:[],w:0,bG:{}});c.forEach(t=>{const gl=t.gradeLabel||'NA';if(!bL[gl])bL[gl]={t:[],w:0,bG:{}};bL[gl].t.push(t);if(isWin(t))bL[gl].w++;const g=t.grade!==''&&t.grade!==null&&t.grade!==undefined?String(t.grade):'';if(g){if(!bL[gl].bG[g])bL[gl].bG[g]={t:[],w:0};bL[gl].bG[g].t.push(t);if(isWin(t))bL[gl].bG[g].w++;}});let html='';lbs.forEach(l=>{const d=bL[l],wr=pct(d.w,d.t.length),aRR=calcAvgRR(d.t),hD=Object.keys(d.bG).length>0,rId='grade-drill-'+l;html+='<tr><td>'+(hD?'<button class="drill-toggle" onclick="toggleDrill(\''+rId+'\')" id="btn-'+rId+'">▶</button>':'')+'</td><td class="'+lbC[l]+'">'+lbN[l]+'</td><td>'+d.t.length+'</td><td style="color:'+(d.t.length===0?'var(--dim)':wr>=80?'var(--gold)':wr>=50?'var(--champ)':'var(--red)')+'">'+  (d.t.length?fmtPct(wr):'—')+'</td><td>'+(d.t.length&&aRR!==null?fmtR(aRR):'—')+'</td></tr>';if(hD)Object.keys(d.bG).sort((a,b)=>Number(b)-Number(a)).forEach(g=>{const sg=d.bG[g],sgwr=pct(sg.w,sg.t.length);html+='<tr class="drill-row hidden" data-drill="'+rId+'"><td></td><td class="'+lbC[l]+'" style="padding-left:24px">'+lbN[l]+' ('+g+')</td><td>'+sg.t.length+'</td><td>'+fmtPct(sgwr)+'</td><td>'+fmtR(calcAvgRR(sg.t))+'</td></tr>';});});document.getElementById('gradeBody').innerHTML=html;}
+window.toggleDrill=function(rId){const rows=document.querySelectorAll('[data-drill="'+rId+'"]'),btn=document.getElementById('btn-'+rId),isH=rows[0]?.classList.contains('hidden');rows.forEach(r=>r.classList.toggle('hidden',!isH));if(btn)btn.textContent=isH?'▼':'▶';};
+function renderEquityCurve(c){const sorted=[...c].sort((a,b)=>new Date(a.closedAt||a.date.replace(/\/g,'-'))-new Date(b.closedAt||b.date.replace(/\/g,'-')));const canvas=document.getElementById('equityCanvas'),cont=canvas.parentElement;canvas.width=cont.clientWidth||800;canvas.height=cont.clientHeight||260;const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,PAD={t:20,r:20,b:40,l:55},pts=[]; let cum=0;sorted.forEach(t=>{if(isWin(t))cum+=Number(t.rr||0);else if(isLoss(t))cum-=1;pts.push({cum,t});});if(!pts.length){ctx.fillStyle='#444';ctx.font='13px Courier New';ctx.textAlign='center';ctx.fillText('No closed trades in this period',W/2,H/2);return;}const allC=[0,...pts.map(p=>p.cum)],minV=Math.min(...allC),maxV=Math.max(...allC),range=maxV-minV||1,cW=W-PAD.l-PAD.r,cH=H-PAD.t-PAD.b,toX=i=>PAD.l+(i/pts.length)*cW,toY=v=>PAD.t+cH-((v-minV)/range)*cH;ctx.strokeStyle='#1A1A1A';ctx.lineWidth=1;for(let i=0;i<=5;i++){const v=minV+(range/5)*i,y=toY(v);ctx.beginPath();ctx.moveTo(PAD.l,y);ctx.lineTo(W-PAD.r,y);ctx.stroke();ctx.fillStyle='#666';ctx.font='10px Courier New';ctx.textAlign='right';ctx.fillText((v>=0?'+':'')+v.toFixed(1)+'R',PAD.l-4,y+3);}const zY=toY(0);ctx.strokeStyle='#333';ctx.beginPath();ctx.moveTo(PAD.l,zY);ctx.lineTo(W-PAD.r,zY);ctx.stroke();ctx.strokeStyle='#D4AF37';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(toX(0),toY(0));pts.forEach((p,i)=>{const x=toX(i+1),pY=toY(i===0?0:pts[i-1].cum);ctx.lineTo(x,pY);ctx.lineTo(x,toY(p.cum));});ctx.stroke();pts.forEach((p,i)=>{const x=toX(i+1),y=toY(p.cum);ctx.fillStyle=isWin(p.t)?'#D4AF37':'#EF5350';ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fill();});ctx.fillStyle='#666';ctx.font='9px Courier New';ctx.textAlign='center';const step=Math.max(1,Math.floor(pts.length/6));pts.forEach((p,i)=>{if(i%step===0||i===pts.length-1){const x=toX(i+1),d=new Date(p.t.closedAt||p.t.date.replace(/\/g,'-'));ctx.fillText((d.getMonth()+1)+'/'+(d.getDate()),x,H-PAD.b+14);}});const fR=pts[pts.length-1]?.cum||0,pR=Math.max(...allC);let mDD=0,pk=allC[0];allC.forEach(v=>{pk=Math.max(pk,v);mDD=Math.max(mDD,pk-v);});document.getElementById('equityStats').innerHTML='<div class="equity-stat"><span class="eq-lbl">Current:</span><span class="eq-val">'+fmtR(fR)+'</span></div><div class="equity-stat"><span class="eq-lbl">Peak:</span><span class="eq-val">'+fmtR(pR)+'</span></div><div class="equity-stat"><span class="eq-lbl">Max Drawdown:</span><span class="eq-val eq-drawdown">-'+mDD.toFixed(2)+'R</span></div><div class="equity-stat"><span class="eq-lbl">Trades:</span><span class="eq-val">'+pts.length+'</span></div>';}
+function renderStreak(c){const sorted=[...c].sort((a,b)=>new Date(a.closedAt||a.date.replace(/\/g,'-'))-new Date(b.closedAt||b.date.replace(/\/g,'-')));let lW=0,lL=0,tW=0,tL=0;sorted.forEach(t=>{if(isWin(t)){tW++;tL=0;lW=Math.max(lW,tW);}else{tL++;tW=0;lL=Math.max(lL,tL);}});let cS=0,cT=null;if(sorted.length){cT=isWin(sorted[sorted.length-1])?'win':'loss';for(let i=sorted.length-1;i>=0;i--){if((isWin(sorted[i])&&cT==='win')||(isLoss(sorted[i])&&cT==='loss'))cS++;else break;}}const cc=cT==='win'?'streak-current-win':'streak-current-loss',cv=cT==='win'?'var(--green)':'var(--red)';document.getElementById('streakGrid').innerHTML='<div class="streak-card '+(cc||'')+'"><div style="font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase">Current Streak</div><div class="streak-num" style="color:'+(cv||'var(--muted)')+'">'+cS+'</div><div class="streak-lbl">'+(cT?cT.toUpperCase()+' STREAK':'—')+'</div><div class="streak-sub">Active / ongoing</div></div><div class="streak-card"><div style="font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase">🔥 Longest Win Streak</div><div class="streak-num streak-win">'+lW+'</div><div class="streak-lbl">Consecutive Wins</div><div class="streak-sub">All-time best</div></div><div class="streak-card"><div style="font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase">Longest Loss Streak</div><div class="streak-num streak-loss">'+lL+'</div><div class="streak-lbl">Consecutive Losses</div><div class="streak-sub">All-time worst</div></div>';}
+function renderOpenWidget(){document.getElementById('openCount').textContent=allTrades.filter(isOpen).length;}
+function renderTradeLog(c){const sMap={date:'closedAt',source:'source',symbol:'symbol',tf:'tf',direction:'direction',entry:'entry',slpts:'slPts',rr:'rr',grade:'grade',mq:'mq',confidence:'confidence',killzone:'killZone',signal:'signal',session:'session',result:'result'},sk=sMap[sortKey]||'closedAt';const sorted=[...c].sort((a,b)=>{let x=a[sk]??'',y=b[sk]??'';if(sk==='closedAt'||sk==='date'){x=new Date(String(x).replace(/\/g,'-'));y=new Date(String(y).replace(/\/g,'-'));}if(['rr','grade','mq','confidence','slPts','entry'].includes(sk)){x=Number(x)||0;y=Number(y)||0;}return x>y?sortDir:x<y?-sortDir:0;});const page=sorted.slice(0,tradeOffset+tradePageSize);document.getElementById('tradeBody').innerHTML=page.length?page.map(t=>{const gl=t.gradeLabel&&t.gradeLabel!=='NA'?t.gradeLabel+(t.grade!==''&&t.grade!==null?'('+t.grade+')':''):'—',sd=t.signalDisplay||normalizeSignalDisplay(t.signal||''),sc=sd.type==='smc'?'var(--gold)':sd.type==='indicator'?'var(--champ)':sd.type==='legacy'?'var(--dim)':'var(--muted)',dateStr=String(t.closedAt||t.date||'').slice(0,10);return'<tr class="'+(isWin(t)?'win-row':'loss-row')+'"><td>'+dateStr+'</td><td>'+t.source+'</td><td>'+t.symbol+'</td><td>'+t.tf+'</td><td class="'+(t.direction==='BUY'?'dir-buy':'dir-sell')+'">'+(t.direction==='BUY'?'↑ BUY':'↓ SELL')+'</td><td>'+fmtNum(t.entry)+'</td><td>'+fmtNum(t.slPts)+'</td><td>'+fmtNum(t.rr)+'</td><td style="font-size:11px">'+gl+'</td><td>'+fmtNum(t.mq)+'</td><td>'+fmtNum(t.confidence)+'</td><td style="font-size:11px">'+fmtNum(t.killZone)+'</td><td style="font-size:11px;font-family:\'Courier New\',monospace;color:'+sc+'">'+sd.display+'</td><td>'+t.session+'</td><td><span class="pill '+(isWin(t)?'pill-win':'pill-loss')+'">'+(isWin(t)?'WIN ✓':'LOSS ✗')+'</span></td></tr>';}).join(''):'<tr><td colspan="15" style="color:var(--muted);font-style:italic;padding:16px">No closed trades in this period.</td></tr>';document.getElementById('tradeCount').textContent='Showing '+Math.min(page.length,sorted.length)+' of '+sorted.length+' closed trades';document.getElementById('loadMore').style.display=tradeOffset+tradePageSize>=sorted.length?'none':'block';}
+function render(){const c=getClosedFiltered();renderExecSummary(c);renderWarRoom(c);renderBattle(c);renderSignal(c);renderSession(c);renderGrade(c);renderEquityCurve(c);renderStreak(c);renderOpenWidget();tradeOffset=0;renderTradeLog(c);const src=dataSource==='live'?'LIVE':'MOCK';document.getElementById('lastUpdated').textContent=new Date().toLocaleTimeString()+' ('+src+')';document.getElementById('footerInfo').textContent='Phase 2 · '+src+' Data · '+c.length+' closed trades';}
+document.querySelectorAll('.trade-table th[data-sort]').forEach(th=>{th.addEventListener('click',()=>{const k=th.dataset.sort;if(sortKey===k)sortDir=-sortDir;else{sortKey=k;sortDir=-1;}renderTradeLog(getClosedFiltered());});});
+document.getElementById('loadMore').addEventListener('click',()=>{tradeOffset+=tradePageSize;renderTradeLog(getClosedFiltered());});
+document.querySelectorAll('.fbtn[data-period]').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.fbtn[data-period]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');period=btn.dataset.period;render();});});
 document.getElementById('srcFilter').addEventListener('change',e=>{srcFilter=e.target.value;render();});
 document.getElementById('gradeFilter').addEventListener('change',e=>{gradeFilter=e.target.value;render();});
 document.getElementById('resultFilter').addEventListener('change',e=>{resultFilter=e.target.value;render();});
-
-// ---- INIT ----
-render();
 window.addEventListener('resize',()=>renderEquityCurve(getClosedFiltered()));
+async function init(){document.getElementById('lastUpdated').textContent='Loading live data...';const result=await fetchLiveData();allTrades=result.data;dataSource=result.source;render();if(CONFIG.REFRESH_MS>0)setInterval(async()=>{const r=await fetchLiveData();allTrades=r.data;dataSource=r.source;render();},CONFIG.REFRESH_MS);}
+init();
 </script>
 </body>
 </html>
