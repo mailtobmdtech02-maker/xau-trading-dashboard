@@ -2,5 +2,11 @@
   "buildCommand": "",
   "outputDirectory": ".",
   "installCommand": "",
-  "framework": null
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/api/dashboard-data",
+      "destination": "http://202.182.125.225:5678/webhook/dashboard-data"
+    }
+  ]
 }
